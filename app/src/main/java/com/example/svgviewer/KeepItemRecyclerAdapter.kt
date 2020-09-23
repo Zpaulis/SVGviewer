@@ -17,7 +17,10 @@ class KeepItemRecyclerAdapter(private val items: MutableList<MainActivity.KeepIt
 
     inner class ImageViewHolder(view: View) : KeepViewHolder(view) {
         override fun bind(position: Int) {
-            val item = items[position] as MainActivity.KeepItemImage
+            val item = items[position]
+
+
+
             Glide.with(itemView)
                 .load(item.uri)
                 .into(itemView.keepImage)

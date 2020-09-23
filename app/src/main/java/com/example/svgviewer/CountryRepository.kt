@@ -11,7 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class CountryRepository {
 
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.thecatapi.com/v1/")
+        .baseUrl("https://api.thecatapi.com/v1/")
+//        .baseUrl("https://restcountries.eu/rest/v2/all/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

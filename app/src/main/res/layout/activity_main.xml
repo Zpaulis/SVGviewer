@@ -44,8 +44,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainButtonAddImage"
+        app:layout_constraintTop_toBottomOf="@+id/mainResImage"
         app:spanCount="2"
         tools:listitem="@layout/item_keep_image" />
+
+    <ImageView
+        android:id="@+id/mainPictureToTest"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainButtonAddText"
+        app:srcCompat="@drawable/ic_test" />
+
+    <ImageView
+        android:id="@+id/mainResImage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/todo"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainPictureToTest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
