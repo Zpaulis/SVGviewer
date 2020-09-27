@@ -29,7 +29,7 @@ class KeepItemRecyclerAdapter(
         val context = holder.itemView.context
         val info = infos[position]
         val flagUri  = info.flag.toUri()
-        holder.itemView.country_name.text = info.name
+        holder.itemView.country_name.text = " " + info.name + " "
 //        holder.itemView.flag_url_string.text = info.flag
 
         GlideToVectorYou
