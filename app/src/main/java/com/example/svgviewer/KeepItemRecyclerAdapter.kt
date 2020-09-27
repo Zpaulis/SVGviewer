@@ -1,14 +1,20 @@
 package com.example.svgviewer
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_keep_image.view.*
+import kotlin.coroutines.coroutineContext
 
 
-class KeepItemRecyclerAdapter(private val items: MutableList<MainActivity.KeepItemImage>) :
+class KeepItemRecyclerAdapter(
+    private val listener: AdapterClickListener,
+    private val infos: MutableList<CountryInfo>
+) :
     RecyclerView.Adapter<KeepItemRecyclerAdapter.KeepViewHolder>() {
 
     abstract class KeepViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -17,13 +23,11 @@ class KeepItemRecyclerAdapter(private val items: MutableList<MainActivity.KeepIt
 
     inner class ImageViewHolder(view: View) : KeepViewHolder(view) {
         override fun bind(position: Int) {
-            val item = items[position]
-
-
-
-            Glide.with(itemView)
-                .load(item.uri)
-                .into(itemView.keepImage)
+//            val info = infos[position]
+//            itemView.country_name.text = info.name
+ //             Glide.with(itemView)
+//                .load(info.uri)
+//                .into(itemView.keepImage)
         }
     }
 
@@ -37,17 +41,24 @@ class KeepItemRecyclerAdapter(private val items: MutableList<MainActivity.KeepIt
 
     override fun getItemViewType(position: Int) = IMAGE_KEEP
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = infos.size
 
     override fun onBindViewHolder(holder: KeepViewHolder, position: Int) {
         holder.bind(position)
-        val item = items[position]
+        val info = infos[position]
 
         holder.itemView.keepClose.setOnClickListener {
-            val currentPosition = items.indexOf(item)
-            items.removeAt(currentPosition)
+            val currentPosition = infos.indexOf(info)
+            infos.removeAt(currentPosition)
             notifyItemRemoved(currentPosition)
         }
+
+        holder.itemView.setOnClickListener {
+            listener.itemClicked(infos[position])
+            Log.d("TTTTTTTTTTTTTTTTTTT",infos[position].name)
+
+        }
+
     }
 
     companion object {
