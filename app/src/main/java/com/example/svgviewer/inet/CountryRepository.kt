@@ -1,13 +1,6 @@
-package com.example.svgviewer
+package com.example.svgviewer.inet
 
 import androidx.lifecycle.liveData
-import androidx.lifecycle.MutableLiveData
-import com.example.svgviewer.CountryServiceProvider.retrofit
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.Dispatchers
 
 sealed class Resource<T> {
@@ -18,8 +11,7 @@ sealed class Resource<T> {
 }
 
     object CountryRepository {
-
-        private val service: CountryService by lazy { retrofit }
+        private val service: CountryService by lazy { CountryServiceProvider.retrofit }
 
         fun getAllCountries() = request { service.getAllCountries() }
 
@@ -44,7 +36,6 @@ sealed class Resource<T> {
 //        )
 //        return data
 //    }
-
 
     private fun <T> request(request: suspend () -> T) = liveData<Resource<T>>(Dispatchers.IO) {
         emit(Resource.Loading())

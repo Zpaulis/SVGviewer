@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_keep_image.view.*
-import kotlin.coroutines.coroutineContext
-
 
 class KeepItemRecyclerAdapter(
     private val listener: AdapterClickListener,
@@ -17,40 +14,26 @@ class KeepItemRecyclerAdapter(
 ) :
     RecyclerView.Adapter<KeepItemRecyclerAdapter.KeepViewHolder>() {
 
-    abstract class KeepViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(position: Int)
-    }
-
-    inner class ImageViewHolder(view: View) : KeepViewHolder(view) {
-        override fun bind(position: Int) {
-//            val info = infos[position]
-//            itemView.country_name.text = info.name
- //             Glide.with(itemView)
-//                .load(info.uri)
-//                .into(itemView.keepImage)
-        }
-    }
+    class KeepViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeepViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return when (viewType) {
-            IMAGE_KEEP -> ImageViewHolder(inflater.inflate(R.layout.item_keep_image, parent, false))
-            else -> ImageViewHolder(inflater.inflate(R.layout.item_keep_image, parent, false))
-        }
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.item_keep_image, parent, false)
+        return KeepViewHolder(inflater)
     }
-
-    override fun getItemViewType(position: Int) = IMAGE_KEEP
 
     override fun getItemCount() = infos.size
 
     override fun onBindViewHolder(holder: KeepViewHolder, position: Int) {
-        holder.bind(position)
+        val context = holder.itemView.context
         val info = infos[position]
+        holder.itemView.country_name.text = info.name
+        holder.itemView.flag_url_string.text = info.flag
 
         holder.itemView.keepClose.setOnClickListener {
             val currentPosition = infos.indexOf(info)
             infos.removeAt(currentPosition)
             notifyItemRemoved(currentPosition)
+            Toast.makeText(holder.itemView.context, info.name, Toast.LENGTH_LONG).show()
         }
 
         holder.itemView.setOnClickListener {
@@ -58,11 +41,5 @@ class KeepItemRecyclerAdapter(
             Log.d("TTTTTTTTTTTTTTTTTTT",infos[position].name)
 
         }
-
     }
-
-    companion object {
-        private const val IMAGE_KEEP = 1
-    }
-
 }

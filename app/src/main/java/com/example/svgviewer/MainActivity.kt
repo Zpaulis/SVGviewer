@@ -1,6 +1,5 @@
 package com.example.svgviewer
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -16,14 +15,12 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.caverock.androidsvg.SVG
+import com.example.svgviewer.inet.Resource
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_keep_image.view.*
 
 
 class MainActivity : AppCompatActivity(), AdapterClickListener {
-//    data class KeepItemImage(val uri: String)
 // Sample SVG string ...
     val myItemFlagStr = SVG.getFromString("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
             "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
@@ -42,11 +39,6 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     val canvas3 = Canvas(bitmap3)
 
     val infos = mutableListOf<CountryInfo>()
-//    val imageInfo get() = KeepItemImage("https://p.kindpng.com/picc/s/72-722801_bread-roll-png-roll-of-bread-png-transparent.png")
-//    val imageItem get() = KeepItemImage("https://restcountries.eu/data/gbr.svg")
-
-
-    private val keepInfos: MutableList<CountryInfo> = infos
 
     private lateinit var adapter: KeepItemRecyclerAdapter
     private lateinit var layoutManager: StaggeredGridLayoutManager
@@ -93,6 +85,7 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         adapter = KeepItemRecyclerAdapter(this, infos)
         mainItems.adapter = adapter
 refresh()
+
         mainButtonAddImage.setOnClickListener { addImageItem() }
         refreshLayout.setOnRefreshListener { refresh() }
     }
