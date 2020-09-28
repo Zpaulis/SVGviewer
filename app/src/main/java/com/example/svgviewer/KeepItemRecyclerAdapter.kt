@@ -31,7 +31,7 @@ class KeepItemRecyclerAdapter(
         val flagUri  = info.flag.toUri()
         holder.itemView.country_name.text = " " + info.name + " "
 //        holder.itemView.flag_url_string.text = info.flag
-
+// SVG to Bitmap from URL via GlideToVectorYou
         GlideToVectorYou
             .init()
             .with(context)

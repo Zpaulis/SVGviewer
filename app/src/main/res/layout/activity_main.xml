@@ -61,12 +61,11 @@
 
     <ImageView
         android:id="@+id/mainPictureToTest"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:contentDescription="@string/todo"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainButtonAddText"
         app:srcCompat="@drawable/ic_test" />
 
@@ -80,5 +79,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainPictureToTest" />
+
+    <ImageView
+        android:id="@+id/pic_from_string"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toStartOf="@+id/mainPictureToTest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainButtonAddImage"
+        app:srcCompat="@drawable/ic_close" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

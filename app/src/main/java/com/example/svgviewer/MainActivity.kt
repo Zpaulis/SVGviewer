@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
 // ... render to bitmap
         canvas3.drawARGB(0,255, 255, 255)
         myItemFlagStr.renderToCanvas(canvas3)
-        mainPictureToTest.setImageDrawable(BitmapDrawable(resources, bitmap3))
+        pic_from_string.setImageDrawable(BitmapDrawable(resources, bitmap3))
 
         // Read an SVG from the assets folder
         val svg = SVG.getFromResource(resources, R.raw.test)
