@@ -122,12 +122,6 @@ refresh()
                 // didn't work
             });
         queue.add(myItemFlagStrRequest)
-//        val myItemFlagStr = URL("https://restcountries.eu/data/bwa.svg").readText()  ---> NOT working
-
-//        repository.getImage().observe(this, Observer{
-//            var item = KeepItemImage(it.url)
-//            addKeepItem(item)
-//        })
 
     }
     override fun deleteClicked(item: CountryInfo) {
